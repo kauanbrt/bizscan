@@ -3,14 +3,14 @@ import { useCnpj } from "../contexts/CnpjContext";
 import { useState } from "react";
 
 export default function SearchBar(){
-    const { input, setInput, isInvalid, loading, err, setErr, search } = useCnpj();
+    const { input, setInput, cnpj, isInvalid, loading, err, setErr, search } = useCnpj();
     const [touched, setTouched] = useState(false);
 
-    const showError = touched && (!input || isInvalid);
-    const helper = !touched ? " " : (!input ? "Campo obrigatório" : (isInvalid ? "CNPJ inválido" : " "));
+    const showError = touched && (!cnpj || isInvalid);
+    const helper = !touched ? " " : (!cnpj ? "Campo obrigatório" : (isInvalid ? "CNPJ inválido" : " "));
 
     const validate = () => {
-        const value = (input ?? "").trim();
+        const value = (cnpj ?? "").trim();
 
         if (!value) {
             setErr("Campo obrigatório não preenchido!");
@@ -28,7 +28,7 @@ export default function SearchBar(){
     return (
         <Stack spacing={2}>
             <TextField
-                label="CNPJ"
+                label="Digite o CNPJ"
                 value={input}
                 onBlur={()=>setTouched(true)}
                 onChange={(e)=>setInput(e.target.value)}

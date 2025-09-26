@@ -41,7 +41,7 @@ export function CnpjProvider({ children }) {
         cada nova renderização.
     */
     const cnpj = useMemo(() => normalizeCnpj(input), [input]);
-    const isInvalid = useMemo(() => input && !isValidCnpj(input), [input]);
+    const isInvalid = useMemo(() => cnpj && !isValidCnpj(cnpj), [cnpj]);
 
     async function search() {
         setErr(""); setData(null);
