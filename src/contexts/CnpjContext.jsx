@@ -66,7 +66,7 @@ export function CnpjProvider({ children }) {
         setInput("");
     }
 
-    const value = { input, setInput, cnpj, isInvalid, data, err, loading, search, resetSearch };
+    const value = { input, setInput, cnpj, isInvalid, data, err, setErr, loading, search, resetSearch };
     return <CnpjContext.Provider value={value}>{children}</CnpjContext.Provider>;
 }
 

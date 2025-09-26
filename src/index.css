@@ -6,12 +6,14 @@
   --card-fg: 260 20% 95%;
   --primary: 262 88% 65%;
   --primary-fg: 0 0% 100%;
+  --destructive: 0 84% 60%;
   --ring: 262 88% 65%;
   --border: 262 20% 15%;
 
   --foreground: var(--fg);
   --card-foreground: var(--card-fg);
   --primary-foreground: var(--primary-fg);
+  --destructive-foreground: 0 0% 100%;
   --muted-foreground: 260 15% 65%;
 
   --gradient: linear-gradient(135deg, hsl(262 88% 55%), hsl(282 80% 65%));
