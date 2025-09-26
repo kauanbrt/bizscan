@@ -31,3 +31,7 @@ body {
   color: hsl(var(--fg));
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
+a {
+  color: hsl(var(--primary));
+}

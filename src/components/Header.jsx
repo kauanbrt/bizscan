@@ -22,7 +22,7 @@ export default function Header() {
                 aria-label="BizScan - Página inicial"
             >
                 <span className="brand-badge">
-                    <QueryStatsIcon fontSize="large" sx={{ color: "hsl(var(--primary-foreground))" }} />
+                    <QueryStatsIcon fontSize="small" sx={{ color: "hsl(var(--primary-foreground))" }} />
                 </span>
 
                 <Box sx={{ display: "grid" }}>

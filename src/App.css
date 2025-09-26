@@ -87,6 +87,64 @@
   cursor: crosshair !important;
 }
 
+.hero {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 18px 20px;
+}
+
+.hero-head {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background-image: var(--grad-brand);
+  box-shadow: var(--shadow-elegant);
+}
+
+.hero-title {
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: .2px;
+  margin: 0;
+}
+
+.hero-sub {
+  margin-top: 2px;
+  color: hsl(var(--muted-foreground));
+}
+
+.hero-desc {
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  color: hsl(var(--muted-foreground));
+}
+
+.hero-sep {
+  height: 1px;
+  background: hsl(var(--border));
+  margin: 14px 0 0;
+  border: 0;
+}
+
+@media (max-width: 420px) {
+  .hero-title { font-size: 1.05rem; }
+  .hero-sub { font-size: .75rem; }
+  .hero-desc { font-size: .8rem; }
+}
+
 /* ---- Classes para padronizar estilo dos componentes MUI ---- */
 
 /* Borda padrão */

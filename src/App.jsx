@@ -1,5 +1,6 @@
-import { Container, Box } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import Header from "./components/Header";
+import HeroCard from "./components/HeroCard";
 import SearchBar from "./components/SearchBar";
 import './App.css'
 
@@ -11,15 +12,15 @@ export default function App() {
         maxWidth="sm"
         sx={{
           minHeight: { xs: "calc(100dvh - 56px)", sm: "calc(100dvh - 64px)" },
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: "grid",
+          placeItems: "center",
           px: 2,
         }}
       >
-        <Box sx={{ width: "100%" }}>
+        <Stack spacing={7} sx={{ width: "100%" }}>
+          <HeroCard />
           <SearchBar />
-        </Box>
+        </Stack>
       </Container>
     </>
   );
