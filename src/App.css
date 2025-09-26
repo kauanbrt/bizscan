@@ -1,42 +1,138 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ---- Classes utilitárias ---- */
+.bg-app {
+  background: hsl(var(--bg));
+  color: hsl(var(--fg));
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.card-dark {
+  background: hsl(var(--card));
+  color: hsl(var(--card-fg));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-gradient {
+  background-image: var(--gradient);
+  color: hsl(var(--muted-foreground));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-elegant);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn-gradient:hover {
+  background-image: var(--grad-hover);
+  box-shadow: 0 6px 24px -6px hsl(262 88% 55% / 0.35);
 }
 
-.card {
-  padding: 2em;
+.header-dark {
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border-bottom: 1px solid hsl(var(--border));
+  backdrop-filter: saturate(120%) blur(6px);
 }
 
-.read-the-docs {
-  color: #888;
+.brand-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background-image: var(--grad-brand);
+  box-shadow: var(--shadow-elegant);
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background-image: var(--grad-brand);
+  box-shadow: var(--shadow-elegant);
+}
+
+.brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-wrap:hover .brand-sub {
+  color: hsl(var(--foreground));
+}
+
+.brand-title {
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.brand-sub {
+  color: hsl(var(--muted-foreground));
+  transition: color .2s ease;
+}
+
+.link-quiet {
+  color: hsl(var(--muted-foreground));
+  text-decoration: none;
+}
+
+.link-quiet:hover {
+  color: hsl(var(--foreground));
+  text-decoration: underline;
+}
+
+.btn-gradient:disabled {
+  cursor: crosshair !important;
+}
+
+/* ---- Classes para padronizar estilo dos componentes MUI ---- */
+
+/* Borda padrão */
+.input-dark .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Hover */
+.input-dark .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: hsl(var(--ring)) !important;
+}
+
+/* Focus */
+.input-dark .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: hsl(var(--ring)) !important;
+}
+
+/* Remove qualquer outline azul nativo */
+.input-dark .MuiOutlinedInput-root.Mui-focused {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Label */
+.input-dark .MuiInputLabel-root { 
+  color: hsl(260 15% 65%) !important; 
+}
+.input-dark .MuiInputLabel-root.Mui-focused { 
+  color: hsl(var(--fg)) !important;
+}
+
+/* Texto */
+.input-dark .MuiOutlinedInput-input {
+  color: hsl(var(--fg)) !important;
+}
+
+/* Estado erro (opcional) */
+.input-dark .MuiFormHelperText-root.Mui-error,
+.input-dark .MuiInputLabel-root.Mui-error,
+.input-dark .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: hsl(0 75% 55%) !important;
+  color: hsl(0 75% 55%) !important;
+}
+
+/* Autofill WebKit */
+.input-dark input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px hsl(var(--card)) inset;
+  -webkit-text-fill-color: hsl(var(--fg));
 }
