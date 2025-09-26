@@ -60,7 +60,13 @@ export function CnpjProvider({ children }) {
         }
     }
 
-    const value = { input, setInput, cnpj, isInvalid, data, err, loading, search };
+    function resetSearch() {
+        setData(null);
+        setErr("");
+        setInput("");
+    }
+
+    const value = { input, setInput, cnpj, isInvalid, data, err, loading, search, resetSearch };
     return <CnpjContext.Provider value={value}>{children}</CnpjContext.Provider>;
 }
 

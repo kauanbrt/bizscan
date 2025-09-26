@@ -1,9 +1,8 @@
 import { TextField, Button, Alert, CircularProgress, Stack } from "@mui/material";
-import CompanyCard from "./CompanyCard";
 import { useCnpj } from "../contexts/CnpjContext";
 
 export default function SearchBar(){
-    const { input, setInput, isInvalid, loading, err, data, search } = useCnpj();
+    const { input, setInput, isInvalid, loading, err, search } = useCnpj();
 
     return (
         <Stack spacing={2}>
@@ -23,7 +22,6 @@ export default function SearchBar(){
             </Button>
 
             {err && <Alert severity="error">{err}</Alert>}
-            {data && <CompanyCard data={data} />}
         </Stack>
     );
 }
