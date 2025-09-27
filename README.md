@@ -1,16 +1,57 @@
-# React + Vite
+# BizScan – Consulta de CNPJ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação em **React (Vite)** para consultar empresas brasileiras pelo **CNPJ** usando a **API pública OpenCNPJ**.  
+Trabalho da disciplina **Desenvolvimento Web Fullstack – UTFPR**.
 
-Currently, two official plugins are available:
+**Disponível online em:** https://bizscan.fly.dev/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## O que faz
+- Busca CNPJ (com ou sem pontuação)
+- Mostra razão social, nome fantasia, situação, CNAE, endereço, contatos, capital social e QSA
+- Mensagens de erro para CNPJ vazio, inválido e não encontrado
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tecnologias
+- React + Vite  
+- Material UI (MUI)  
+- Context API (`CnpjContext`)  
+- `useMemo` para normalização/validação do CNPJ  
+- Deploy no Fly.io
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Como rodar localmente
+
+### Requisitos
+- Node.js 18+
+
+### Passos
+```bash
+git clone https://github.com/kauanbrt/bizscan.git
+cd bizscan
+npm install
+npm run dev
+```
+
+Acesse: **http://localhost:5173**
+
+---
+
+## Estrutura (resumo)
+```
+src/
+  components/   # Header, HeroCard, SearchBar, CompanyCard
+  contexts/     # CnpjContext (estado global e busca)
+  index.css
+  App.jsx
+  main.jsx
+```
+
+---
+
+## Notas
+- API usada: `https://api.opencnpj.org/{cnpj}`
+- O campo CNPJ aceita “00.000.000/0000-00” **ou** “00000000000000”
