@@ -43,6 +43,7 @@ export function CnpjProvider({ children }) {
     const cnpj = useMemo(() => normalizeCnpj(input), [input]);
     const isInvalid = useMemo(() => cnpj && !isValidCnpj(cnpj), [cnpj]);
 
+    /* Realiza a busca na API */
     async function search() {
         setErr(""); setData(null);
         if (!cnpj || isInvalid) { setErr("Informe um CNPJ válido."); return; }
@@ -60,6 +61,7 @@ export function CnpjProvider({ children }) {
         }
     }
 
+    /* Reseta os dados para uma nova consulta */
     function resetSearch() {
         setData(null);
         setErr("");

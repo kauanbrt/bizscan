@@ -1,10 +1,12 @@
 import { Card, CardContent, Typography, Chip, Stack, Grid, Divider, Box, Link } from "@mui/material";
 
+/* Formata CNPJ */
 function formatCnpj(c) {
     const v = (c || "").replace(/\D/g, "");
     return v.length === 14 ? v.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/, "$1.$2.$3/$4-$5") : c;
 }
 
+/* Formata data */
 function formatDate(d) {
     if (!d) return "—";
     const [y,m,day] = (d || "").split("-").map(Number);
@@ -12,11 +14,13 @@ function formatDate(d) {
     return new Date(y, m - 1, day).toLocaleDateString("pt-BR");
 }
 
+/* Formata CEP */
 function formatCep(cep) {
     const v = (cep || "").replace(/\D/g, "");
     return v.length === 8 ? v.replace(/^(\d{5})(\d{3})$/, "$1-$2") : cep || "—";
 }
 
+/* Formata telefone */
 function formatPhone(ddd, numero) {
     const n = String(numero || "").replace(/\D/g, "");
     if (!ddd && !n) return "—";
@@ -27,6 +31,7 @@ function formatPhone(ddd, numero) {
     return `(${ddd || "—"}) ${numero || ""}`;
 }
 
+/* Formata dinheiro */
 function formatMoney(v) {
     if (v == null || v === "") return "—";
     const num = typeof v === "number" ? v : Number(String(v).replace(",", "."));
@@ -34,12 +39,14 @@ function formatMoney(v) {
     return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(num);
 }
 
+/* Máscara do CNAE */
 function maskCnae(code) {
     const c = (code || "").replace(/\D/g, "");
     // 7 dígitos → NNNN-N/NN
     return c.length === 7 ? c.replace(/^(\d{4})(\d)(\d{2})$/, "$1-$2/$3") : code || "—";
 }
 
+/* Formata endereço */
 function joinAddress(d) {
     const arr = [
     d.logradouro, d.numero, d.complemento, d.bairro,

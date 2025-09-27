@@ -9,6 +9,7 @@ export default function SearchBar(){
     const showError = touched && (!cnpj || isInvalid);
     const helper = !touched ? " " : (!cnpj ? "Campo obrigatório" : (isInvalid ? "CNPJ inválido" : " "));
 
+    /* Valida se o campo foi preenchido e é um CNPJ válido  */
     const validate = () => {
         const value = (cnpj ?? "").trim();
 
