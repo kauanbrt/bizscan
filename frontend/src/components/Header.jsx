@@ -1,8 +1,12 @@
 import { AppBar, Toolbar, Box, Typography, Button } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import LogoutIcon from "@mui/icons-material/Logout";
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
+  const { logout, user } = useAuth();
+
   return (
     <AppBar
       position="sticky"
@@ -34,6 +38,13 @@ export default function Header() {
             </Box>
         </Box>
 
+        {/* User info */}
+        {user && (
+          <Typography variant="body2" sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {user.email}
+          </Typography>
+        )}
+
         {/* Github do Projeto */}
         <Button
           variant="contained"
@@ -42,9 +53,27 @@ export default function Header() {
           href="https://github.com/kauanbrt/bizscan"
           target="_blank"
           rel="noreferrer"
-          sx={{ textTransform: "none" }}
+          sx={{ textTransform: "none", display: { xs: 'none', sm: 'flex' } }}
         >
           GitHub
+        </Button>
+
+        {/* Logout button */}
+        <Button
+          variant="outlined"
+          startIcon={<LogoutIcon />}
+          onClick={logout}
+          sx={{
+            textTransform: "none",
+            borderColor: "hsl(var(--ring))",
+            color: "hsl(var(--foreground))",
+            "&:hover": {
+              borderColor: "hsl(var(--ring))",
+              background: "hsl(var(--secondary))",
+            },
+          }}
+        >
+          Sair
         </Button>
       </Toolbar>
     </AppBar>

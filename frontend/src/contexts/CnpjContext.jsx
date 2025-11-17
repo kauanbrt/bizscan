@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, useMemo } from "react";
+import { useAuth } from "./AuthContext";
 
 const CnpjContext = createContext(null);
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
 /* Normaliza o input do CNPJ */
 function normalizeCnpj(v = "") {
@@ -34,25 +37,35 @@ export function CnpjProvider({ children }) {
     const [data, setData] = useState(null);
     const [err, setErr] = useState("");
     const [loading, setLoading] = useState(false);
+    const { token, logout } = useAuth();
 
-    /* 
-        Utilizaçao do Hook escolhido (useMemo) - "memoiza" o valor 
-        normalizado e a validação do CNPJ, para evitar recalcular a 
+    /*
+        Utilizaçao do Hook escolhido (useMemo) - "memoiza" o valor
+        normalizado e a validação do CNPJ, para evitar recalcular a
         cada nova renderização.
     */
     const cnpj = useMemo(() => normalizeCnpj(input), [input]);
     const isInvalid = useMemo(() => cnpj && !isValidCnpj(cnpj), [cnpj]);
 
-    /* Realiza a busca na API */
+    /* Realiza a busca no backend */
     async function search() {
         setErr(""); setData(null);
         if (!cnpj || isInvalid) { setErr("Informe um CNPJ válido."); return; }
         try {
             setLoading(true);
-            const res = await fetch(`https://api.opencnpj.org/${cnpj}`);
+            const res = await fetch(`${API_URL}/companies/${cnpj}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+            if (res.status === 401) {
+                logout();
+                throw new Error("Sessão expirada. Faça login novamente.");
+            }
             if (res.status === 404) throw new Error("CNPJ não encontrado.");
             if (!res.ok) throw new Error(`Erro ${res.status}`);
             const json = await res.json();
+            // Backend já retorna no formato da API OpenCNPJ (snake_case)
             setData(json);
         } catch (e) {
             setErr(e.message || "Erro ao buscar CNPJ.");
@@ -68,7 +81,7 @@ export function CnpjProvider({ children }) {
         setInput("");
     }
 
-    const value = { input, setInput, cnpj, isInvalid, data, err, setErr, loading, search, resetSearch };
+    const value = { input, setInput, cnpj, isInvalid, data, setData, err, setErr, loading, search, resetSearch };
     return <CnpjContext.Provider value={value}>{children}</CnpjContext.Provider>;
 }
 
